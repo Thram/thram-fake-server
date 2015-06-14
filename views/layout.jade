@@ -1,0 +1,12 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/css/app.min.css')
+    body(onload="App.init()")
+        nav
+            .nav-wrapper
+                a.brand-logo(href="#!") TMF
+        block content
+
+    script(src="/js/app.min.js")
