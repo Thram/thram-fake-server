@@ -3,7 +3,21 @@
         i.large.mdi-content-add
 #modal1.modal
     .modal-content
-        h4 Modal Header
-        p A bunch of text
+        h4 Add a new app
+        .row
+            form.col.s12
+                .row
+                    .input-field.col.s6
+                        i.mdi-action-settings.prefix
+                        input#app-name.validate(type="text")
+                        label(for="app-name") Application Name
+                .row
+                    .input-field.col.s6
+                        i.mdi-content-link.prefix
+                        input#endpoint.validate(type="text")
+                        label(for="endpoint") Endpoint URL
+                    .input-field.col.s6
+                        textarea#schema.materialize-textarea.validate
+                        label(for="schema") Schema
     .modal-footer
-    a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!") Agree
+    a#add-endpoint.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!") Add
