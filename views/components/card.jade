@@ -1,0 +1,54 @@
+.col.m4.l2.left
+    .card
+        .card-content
+            .row
+                .col.s12
+                    i.green-text.mdi-action-dns.prefix
+                    span.card-title.green-text Card Title
+                    i.details.mdi-navigation-close.right(style="display:none")
+
+            .row.summary
+                .col.s6
+                    .row.center-align
+                        .col.s12
+                            label Endpoints
+                    .row.center-align
+                        .col.s12
+                            span.endpoints_amount 3
+                .col.s6
+                    .row.center-align
+                        .col.s12
+                            label Services
+                    .row.center-align
+                        .col.s12
+                            span.endpoints_amount 0
+            .row.details(style="display:none")
+                ul.collapsible(data-collapsible="accordion")
+                    li
+                        .collapsible-header.active
+                            i.mdi-content-link
+                            span Endpoints
+                            a.right.teal-text
+                                i.mdi-content-add
+                        .collapsible-body
+                            table#endpoints-table.striped.hoverable.responsive-table
+                                thead
+                                    tr
+                                        th(data-field="url") URL
+                                        th(data-field="hits") Hits
+                                        th(data-field="response_type") Response Type
+                                        th(data-field="actions") Actions
+                                    tbody
+                    li
+                        .collapsible-header
+                            i.mdi-content-link
+                            span Services
+                        .collapsible-body
+                            table#services-table.striped.hoverable.responsive-table
+                                thead
+                                    tr
+                                        th(data-field="url") URL
+                                        th(data-field="hits") Hits
+                                        th(data-field="response_type") Response Type
+                                        th(data-field="actions") Actions
+                                    tbody

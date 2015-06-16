@@ -1,1 +1,10 @@
-{"$$indexCreated":{"fieldName":"app","unique":true,"sparse":false}}
+{"app_namespace":"eee","app_name":"eee","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"6vAfYom5hHNN1MkR"}
+{"app_namespace":"ccc","app_name":"ccc","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"9LmcQK9cz4dL05O4"}
+{"app_namespace":"fff","app_name":"fff","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"G5RhR89I9vJb3nQn"}
+{"app_namespace":"ddd","app_name":"ddd","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"Yhnb6WRniCf4IVk6"}
+{"app_namespace":"bbb","app_name":"bbb","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"eXxpozv0Fm11QPFv"}
+{"app_namespace":"ggg","app_name":"ggg","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"k5bfL4l9ahvSwwz6"}
+{"app_namespace":"aaa","app_name":"aaa","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"yt5qS8khtxLBvdWh"}
+{"$$indexCreated":{"fieldName":"app_namespace","unique":true,"sparse":false}}
+{"app_namespace":"vvv","app_name":"vvv","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"mvOHL8N5Nq3hcgRY"}
+{"app_namespace":"www","app_name":"www","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"gauFI8YGQ9ZYKbxr"}

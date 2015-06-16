@@ -1,0 +1,41 @@
+.fixed-action-btn(style="bottom: 45px; right: 24px;")
+    a#new-app-modal-btn.btn-floating.btn-large.green.darken-1.waves-effect.waves-red.modal-trigger(href="#new-app-modal")
+        i.large.mdi-content-add
+#new-app-modal.modal
+    .modal-content
+        h4 Add a new app
+        .row
+            form.col.s12
+                .row
+                    .input-field.col.s8.offset-s2
+                        i.mdi-action-dns.prefix
+                        input#app-namespace.validate(type="text" disabled)
+                        label(for="app-name") Application Namespace
+                .row
+                    .input-field.col.s8
+                        i.mdi-action-settings.prefix
+                        input#app-name.validate(type="text")
+                        label(for="app-name") Application Name
+                    .input-field.col.s4
+                        input#rest(name="app-type" type="radio" checked)
+                        label(for="rest") REST
+                        input#local(name="app-type" type="radio" )
+                        label(for="local") Local
+                .row
+                    .card-panel.col.s12.blue.darken-2
+                        h5.white-text Settings
+                .row
+                    .input-field.col.s4
+                        i.mdi-image-timer.prefix
+                        input#response-time.validate(type="number" value="1000")
+                        label(for="response-time") Response Time (ms)
+                    .input-field.col.s4
+                        i.mdi-editor-format-list-numbered.prefix
+                        input#max-items-req.validate(type="number" value="25")
+                        label(for="max-rows-list") Max. Items per Request
+                    .input-field.col.s4
+                        i.mdi-action-bug-report.prefix
+                        input#error-probability.validate(type="number" value="0")
+                        label(for="error-probability") Error probability (%)
+    .modal-footer
+        a#add-application.modal-action.modal-close.waves-effect.waves-light.btn(href="#!") Add

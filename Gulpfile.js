@@ -45,6 +45,15 @@ gulp.task('watch', function () {
     gulp.watch('sass/*.scss', ['styles']);
     gulp.watch('views/*.jade', notifyLiveReload);
     gulp.watch('scripts/*.js', ['compress']);
+    gulp.watch('scripts/**/*.js', ['compress']);
+    gulp.watch('server.js', notifyLiveReload);
+});
+
+gulp.task('watch-debug', function () {
+    gulp.watch('sass/*.scss', ['styles']);
+    gulp.watch('views/*.jade', notifyLiveReload);
+    gulp.watch('scripts/*.js', ['concat']);
+    gulp.watch('scripts/**/*.js', ['concat']);
     gulp.watch('server.js', notifyLiveReload);
 });
 
@@ -55,6 +64,15 @@ gulp.task('compress', function () {
         .pipe(gulp.dest('public/js'));//the destination folder;
 });
 
+gulp.task('concat', function () {
+    return gulp.src(['scripts/*.js', 'scripts/**/*.js']) //select all javascript files under js/ and any subdirectory
+        .pipe(concat('app.min.js')) //the name of the resulting file
+        .pipe(gulp.dest('public/js'));//the destination folder;
+});
+
 gulp.task('default', ['styles', 'compress', 'express', 'livereload', 'watch'], function () {
+    return gulp.src('./server.js').pipe(notify({message: 'Server started'}));
+});
+gulp.task('debug', ['styles', 'concat', 'express', 'livereload', 'watch-debug'], function () {
     return gulp.src('./server.js').pipe(notify({message: 'Server started'}));
 });
