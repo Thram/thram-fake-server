@@ -2,7 +2,10 @@ extends layout
 
 block content
     #container
-        .row#apps-list
-    include  modals/new.app.jade
+        .grid#apps-grid
+            .grid-sizer
+    include  modals/app.jade
+    include  modals/endpoint.jade
+    include  modals/service.jade
     script#card-template(type="component")
         include components/card.jade

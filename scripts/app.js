@@ -6,6 +6,7 @@ var App = (function () {
     function init() {
         $(".button-collapse").sideNav();
         $('.modal-trigger').leanModal();
+        $('select').material_select();
         Dashboard.init();
 
         console.log('App Init :D')
@@ -14,3 +15,6 @@ var App = (function () {
     return {init: init}
 
 })();
+$(function() {
+    App.init();
+});

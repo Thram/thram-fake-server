@@ -58,14 +58,28 @@ gulp.task('watch-debug', function () {
 });
 
 gulp.task('compress', function () {
-    return gulp.src(['scripts/*.js', 'scripts/**/*.js']) //select all javascript files under js/ and any subdirectory
+    return gulp.src([
+        'scripts/vendor/*.js',
+        'scripts/tools/*.js',
+        'scripts/components/*.js',
+        'scripts/model/*.js',
+        'scripts/views/*.js',
+        'scripts/*.js'
+    ]) //select all javascript files under js/ and any subdirectory
         .pipe(concat('app.min.js')) //the name of the resulting file
         .pipe(uglify())
         .pipe(gulp.dest('public/js'));//the destination folder;
 });
 
 gulp.task('concat', function () {
-    return gulp.src(['scripts/*.js', 'scripts/**/*.js']) //select all javascript files under js/ and any subdirectory
+    return gulp.src([
+        'scripts/vendor/*.js',
+        'scripts/tools/*.js',
+        'scripts/components/*.js',
+        'scripts/model/*.js',
+        'scripts/views/*.js',
+        'scripts/*.js'
+    ]) //select all javascript files under js/ and any subdirectory
         .pipe(concat('app.min.js')) //the name of the resulting file
         .pipe(gulp.dest('public/js'));//the destination folder;
 });

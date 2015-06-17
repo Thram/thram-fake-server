@@ -46,6 +46,7 @@ router.delete('/:app_name', function (req, res, next) {
 
 router.put('/:app_name', function (req, res, next) {
     var data = req.body;
+    console.log(data);
     application.update(req.params.app_name, data['options'], function (result) {
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(result));

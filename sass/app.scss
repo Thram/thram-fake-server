@@ -1,4 +1,57 @@
-@import "materialize";
+@import "vendor/jquery.textcomplete";
+@import "vendor/materialize";
+
+pre {
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+}
+
+.string {
+  color: green;
+}
+
+.number {
+  color: darkorange;
+}
+
+.boolean {
+  color: blue;
+}
+
+.null {
+  color: magenta;
+}
+
+.key {
+  color: red;
+}
+
+.grid {
+  margin: 0 auto;
+  width: auto;
+}
+
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item {
+  padding: 0 10px;
+  width: 20%;
+  -webkit-transition: width 500ms ease-out, height 500ms ease-out;
+  -moz-transition: width 500ms ease-out, height 500ms ease-out;
+  -o-transition: width 500ms ease-out, height 500ms ease-out;
+  transition: width 500ms ease-out, height 500ms ease-out;
+}
+
+/* 2 columns */
+.grid-item-open {
+  width: 60%;
+  z-index: 1;
+}
+
+.clickable {
+  cursor: pointer;
+}
 
 .row {
   margin-bottom: 0;

@@ -1,4 +1,4 @@
-.col.m4.l2.left
+.grid-item.clickable
     .card
         .card-content
             .row
@@ -23,12 +23,12 @@
                         .col.s12
                             span.endpoints_amount 0
             .row.details(style="display:none")
-                ul.collapsible(data-collapsible="accordion")
+                ul.collapsible(data-collapsible="expandable")
                     li
                         .collapsible-header.active
                             i.mdi-content-link
                             span Endpoints
-                            a.right.teal-text
+                            a.add-endpoint.right.teal-text.modal-trigger(href="#endpoint-modal")
                                 i.mdi-content-add
                         .collapsible-body
                             table#endpoints-table.striped.hoverable.responsive-table
@@ -43,6 +43,7 @@
                         .collapsible-header
                             i.mdi-content-link
                             span Services
+                            a.add-service.right.teal-text.modal-trigger(href="#service-modal")
                         .collapsible-body
                             table#services-table.striped.hoverable.responsive-table
                                 thead

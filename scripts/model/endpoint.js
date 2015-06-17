@@ -3,9 +3,8 @@
  */
 var Endpoint = function (data) {
     var _endpoint = {
-        url: data['url'],
-        type: data['type'],
-        response: data['response']
+        route: data['route'],
+        response_type: data['response_type']
     };
 
     if (data['options']) _endpoint['options'] = data['options'];
