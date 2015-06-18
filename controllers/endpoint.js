@@ -6,20 +6,23 @@ var fakeData = require('./fake.data');
 var application = require('./application');
 var endpoint = (function () {
 
-    function process(namespace, route, success, error) {
-        application.getByNamespace(namespace, function (res) {
-            var app = res.result[0];
-            console.log(app);
-            var endpointData = _.find(app['endpoints'], {route: route});
-            console.log(endpointData);
-            var result = {};
-            try {
-                result = fakeData.generateFromSchema(endpointData['options'].json_schema, app['defaults'].max_items_req);
-            } catch (e) {
-            }
-            console.log(result);
-            success(result);
-        }, error);
+    function process(namespace, route, method, success, error) {
+        try {
+            application.getByNamespace(namespace, function (res) {
+                var app = res.result[0];
+                var endpointData = _.find(app['endpoints'], {route: route});
+                var result = {};
+                var quantity = endpointData['options'].is_list === 'true' ? app['defaults'].max_items_req : 1;
+                try {
+                    result = fakeData.generateFromSchema(endpointData['options'].json_schema, quantity);
+                } catch (e) {
+                }
+                success(result);
+            }, error);
+        } catch (e) {
+            console.error('Endpoint not found: ' + route)
+        }
+
 
     }
 

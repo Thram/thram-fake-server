@@ -55,12 +55,9 @@ var database = (function () {
     }
 
     function get(filter, success, error) {
-        console.log(filter);
         return db.find(filter, function (err, docs) {
             // docs is an array containing documents Mars, Earth, Jupiter
             // If no document is found, docs is equal to []
-            console.log(docs);
-            console.log(err);
             if (err) {
                 if (error)
                     error({error: err});

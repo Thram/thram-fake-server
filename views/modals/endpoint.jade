@@ -21,8 +21,17 @@
                         h5.white-text Options
                 .row.response-type.json(style="display:none")
                     .col.m6.s12
-                        h6 JSON Schema
-                        textarea#json-schema.materialize-textarea
+                        .row
+                            .col.m6.s12
+                                h6 JSON Schema
+                            .col.m6.s12
+                                input#json-object(name="json-type" type="radio" value="object" checked)
+                                label(for="json-object") Object
+                                input#json-list(name="json-type" type="radio" value="list")
+                                label(for="json-list") List
+                        .row
+                            .col.m12
+                                textarea#json-schema.materialize-textarea
                     .col.m6.s12
                         h6 JSON Preview
                         pre#json-preview.materialize-textarea

@@ -58,48 +58,9 @@ router.put('/:app_name', function (req, res, next) {
     });
 });
 
-router.post('/:app_name/*', function (req, res) {
-    var data = req.body;
-    endpoint.create(req.params.app_name, req.params[0], data['schema'], data['options'], function (result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(result));
-    }, function (err) {
-        console.log(err);
-        res.setHeader('Content-Type', 'application/json');
-        res.status(400);
-        res.send(JSON.stringify(err));
-    });
-});
-
-router.put('/:app_name/*', function (req, res) {
-    var data = req.body;
-    endpoint.update(req.params.app_name, req.params[0], data['schema'], data['options'], function (result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(result));
-    }, function (err) {
-        console.log(err);
-        res.setHeader('Content-Type', 'application/json');
-        res.status(400);
-        res.send(JSON.stringify(err));
-    });
-});
-
-router.delete('/:app_name/*', function (req, res) {
-    endpoint.delete(req.params.app_name, req.params[0], function (result) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(result));
-    }, function (err) {
-        console.log(err);
-        res.setHeader('Content-Type', 'application/json');
-        res.status(400);
-        res.send(JSON.stringify(err));
-    });
-});
-
-router.get('/:app_name/*', function (req, res) {
+router.all('/:app_name/*', function (req, res, next) {
     //var data = req.params[0].split('/');
-    //var result = endpoint.process(data.shift(), data.shift(), data);
-    endpoint.process(req.params.app_name, req.params[0], function (result) {
+    endpoint.process(req.params.app_name, req.params[0], req.method, function (result) {
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(result));
     });

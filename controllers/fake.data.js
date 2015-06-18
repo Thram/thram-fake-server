@@ -112,10 +112,9 @@ var fakeData = (function () {
         var data = [];
         for (var i = 0; i < quantity; i++) {
             var item = _processObjectSchema(schema);
-            console.log(item);
             data.push(item);
         }
-        return data;
+        return data.length == 1 ? data[0] : data;
     }
 
     function listDataTypes() {

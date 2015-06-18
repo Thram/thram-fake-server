@@ -6,7 +6,6 @@ var database = require('./database');
 var application = (function () {
 
     function getByNamespace(namespace, success, error) {
-        console.log(namespace);
         return database.get({app_namespace: namespace}, success, error);
     }
 
