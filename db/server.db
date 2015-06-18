@@ -10,6 +10,6 @@
 {"app_namespace":"test_tfs_10","app_name":"Test TFS 10","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"iDLE06tjdAwhQF4Y"}
 {"app_namespace":"test_tfs_05","app_name":"Test TFS 05","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"mnHfsL6MOb6SkKtv"}
 {"app_namespace":"test_tfs_02","app_name":"Test TFS 02","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"rB2No3VjtJpUYDGN"}
-{"app_namespace":"test_tfs_01","app_name":"Test TFS 01","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"wj2QiR3iWEULM5GP"}
-{"app_namespace":"test_tfs_03","app_name":"Test TFS 03","defaults":{"response_time":"1000","max_items_req":"25"},"_id":"zjgxEAanFSi12ZAH"}
+{"app_namespace":"test_tfs_01","app_name":"Test TFS 01","defaults":{"response_time":"1000","max_items_req":"25"},"endpoints":[{"route":"test","response_type":"json","options":{"json_schema":{"paragraph":"paragraph"}}}],"_id":"wj2QiR3iWEULM5GP"}
+{"app_namespace":"test_tfs_03","app_name":"Test TFS 03","defaults":{"response_time":"1000","max_items_req":"25"},"endpoints":[{"route":"test","response_type":"json","options":{"json_schema":{"a":"a"}}},{"route":"test2","response_type":"json","options":{"json_schema":{"a":"paragraph"}}}],"_id":"zjgxEAanFSi12ZAH"}
 {"$$indexCreated":{"fieldName":"app_namespace","unique":true,"sparse":false}}

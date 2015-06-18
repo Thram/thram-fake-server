@@ -96,6 +96,7 @@ var fakeData = (function () {
 
     function _processObjectSchema(obj) {
         var data = {};
+
         _.forEach(obj, function (value, key) {
             if (_.isObject(value)) {
                 _processObjectSchema(value);
@@ -111,6 +112,7 @@ var fakeData = (function () {
         var data = [];
         for (var i = 0; i < quantity; i++) {
             var item = _processObjectSchema(schema);
+            console.log(item);
             data.push(item);
         }
         return data;

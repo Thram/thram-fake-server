@@ -14,8 +14,8 @@ var Application = function (data) {
             response_time: data['defaults'] && data['defaults']['response_time'],
             max_items_req: data['defaults'] && data['defaults']['max_items_req']
         },
-        endpoints: [],
-        services: []
+        endpoints: data['endpoints'] || [],
+        services: data['services'] || []
     };
 
 
@@ -29,7 +29,7 @@ var Application = function (data) {
 
     function save(success, error) {
         if (_id) {
-            $.put(_app.app_namespace, _app, success, 'json').fail(error);
+            $.put(_app.app_namespace, {id: _id, app: _app}, success, 'json').fail(error);
         } else {
             $.post(_app.app_namespace, _app, function (res) {
                 // Do something with the request

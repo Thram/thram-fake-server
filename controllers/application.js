@@ -5,8 +5,9 @@
 var database = require('./database');
 var application = (function () {
 
-    function getByName(name, success, error) {
-        return database.get({app_name: name}, success, error);
+    function getByNamespace(namespace, success, error) {
+        console.log(namespace);
+        return database.get({app_namespace: namespace}, success, error);
     }
 
     function getById(id, success, error) {
@@ -31,7 +32,7 @@ var application = (function () {
 
     return {
         getById: getById,
-        getByName: getByName,
+        getByNamespace: getByNamespace,
         list: list,
         create: create,
         update: update,

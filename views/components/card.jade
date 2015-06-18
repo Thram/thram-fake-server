@@ -25,14 +25,14 @@
             .row.details(style="display:none")
                 ul.collapsible(data-collapsible="expandable")
                     li
-                        .collapsible-header.active
+                        .collapsible-header.active.indigo.lighten-5
                             i.mdi-content-link
                             span Endpoints
                             a.add-endpoint.right.teal-text.modal-trigger(href="#endpoint-modal")
                                 i.mdi-content-add
                         .collapsible-body
                             table#endpoints-table.striped.hoverable.responsive-table
-                                thead
+                                thead.grey.lighten-5
                                     tr
                                         th(data-field="url") URL
                                         th(data-field="hits") Hits
@@ -40,13 +40,14 @@
                                         th(data-field="actions") Actions
                                     tbody
                     li
-                        .collapsible-header
+                        .collapsible-header.active.indigo.lighten-5
                             i.mdi-content-link
                             span Services
-                            a.add-service.right.teal-text.modal-trigger(href="#service-modal")
+                            a.add-endpoint.right.teal-text.modal-trigger(href="#service-modal")
+                                i.mdi-content-add
                         .collapsible-body
                             table#services-table.striped.hoverable.responsive-table
-                                thead
+                                thead.grey.lighten-5
                                     tr
                                         th(data-field="url") URL
                                         th(data-field="hits") Hits

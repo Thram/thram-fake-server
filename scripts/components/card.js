@@ -41,17 +41,30 @@ var Card = function (app) {
     }
 
     function _addEndpoint(endpoint) {
-        app.add('endpoint', endpoint, function(){
-            console.log("Success");
-        }, function(){
+        app.add('endpoint', endpoint, function () {
+            _addEndpointRow(endpoint);
+        }, function () {
             console.error("Error");
         });
 
     }
 
+    function _addEndpointRow(endpoint) {
+        var row = $('<tr>');
+        row.append($('<td>').text(endpoint.route));
+        row.append($('<td>').text(endpoint.hits));
+        row.append($('<td>').text(endpoint.response_type));
+        row.append($('<td>'));
+        card.find('#endpoints-table tbody').append(row);
+    }
+
     function _addService() {
 
     }
+
+    _.each(app.get().endpoints, function (endpoint) {
+        _addEndpointRow(endpoint);
+    });
 
     card.find('.card-title').text(app.get().app_name);
     card.find('.collapsible').collapsible({
