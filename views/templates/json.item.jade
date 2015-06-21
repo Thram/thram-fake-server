@@ -1,0 +1,18 @@
+script#json-item-template(type="template")
+    .json-item
+        a.remove-item.btn-flat.waves-effect.waves-light.left
+            i.mdi-content-remove
+        .input-field
+            input(type="text").key.validate
+            label Key
+        .input-field
+            select.value.browser-default
+                option(value="") Choose data type
+                optgroup(label="Expand")
+                    option(value="object") Object
+                    option(value="array") Array
+        .input-field.array-size(style="display:none")
+            input(type="text").size.validate
+            label Size
+        a.add-item.btn-floating.waves-effect.waves-light
+            i.mdi-content-add

@@ -1,7 +1,7 @@
 /**
  * Created by thram on 18/06/15.
  */
-var FakeData = (function(){
+var FakeData = (function () {
     var _dataTypes = {
         basics: {
             boolean: {chance: 'bool', label: 'Boolean'},
@@ -89,10 +89,18 @@ var FakeData = (function(){
         }
 
     };
-    function listDataTypes(){
+
+    function list() {
         return _dataTypes;
     }
-    return{
-        listDataTypes:listDataTypes
+
+    function get(group, key) {
+        return _dataTypes[group] && _dataTypes[group][key] ? chance[_dataTypes[group][key].chance]() : "Fake Data Not found!";
     }
-})();
+
+    return {
+        get: get,
+        list: list
+    }
+})
+();

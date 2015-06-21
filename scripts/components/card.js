@@ -32,12 +32,13 @@ var Card = function (app) {
 
     function _onClick(ev) {
         ev.stopPropagation();
-        var $this = $(this);
-        _openCard($this);
-        var closeBtn = $this.find('.mdi-navigation-close');
-        $this.off('click', _onClick);
-        closeBtn.off('click', _onClose);
-        closeBtn.on('click', _onClose);
+        thram.router.go('/' + app.get().app_namespace);
+        //var $this = $(this);
+        //_openCard($this);
+        //var closeBtn = $this.find('.mdi-navigation-close');
+        //$this.off('click', _onClick);
+        //closeBtn.off('click', _onClose);
+        //closeBtn.on('click', _onClose);
     }
 
     function _addEndpoint(endpoint) {
@@ -67,6 +68,8 @@ var Card = function (app) {
     });
 
     card.find('.card-title').text(app.get().app_name);
+    card.find('.endpoints-amount').text(app.get().endpoints ? app.get().endpoints.length : 0);
+    card.find('.services-amount').text(app.get().services ? app.get().services.length : 0);
     card.find('.collapsible').collapsible({
         accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });

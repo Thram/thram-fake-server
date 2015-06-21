@@ -10,20 +10,23 @@ var Dashboard = (function () {
         _elements['apps_grid'].append(card).masonry('appended', card);
     }
 
-    function init() {
+    function init(url, params) {
         _elements['apps_grid'] = $('#apps-grid');
         _elements['new_app_modal_btn'] = $('#new-app-modal-btn');
-        Application.list(function (res) {
-            $('.grid').masonry({
+        thram.models.get('application').list(function (res) {
+            _elements['apps_grid'].masonry({
                 // set itemSelector so .grid-sizer is not used in layout
-                itemSelector: '.grid-item',
+                //itemSelector: '.grid-item',
                 // use element for option
-                columnWidth: '.grid-sizer',
+                isFitWidth: true,
+                columnWidth: 200,
                 percentPosition: true
             });
             _.each(_.sortBy(res.result, 'app_name'), function (data) {
                 _addCard(data);
             });
+            _elements['apps_grid'].masonry();
+
         }, function (err) {
             console.log(err);
         });

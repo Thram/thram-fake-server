@@ -25,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/t/f/s/', tfs);
 app.use('/', routes);
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");

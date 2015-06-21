@@ -46,6 +46,8 @@ gulp.task('watch', function () {
     gulp.watch('views/*.jade', notifyLiveReload);
     gulp.watch('scripts/*.js', ['compress']);
     gulp.watch('scripts/**/*.js', ['compress']);
+    gulp.watch('controllers/*.js', notifyLiveReload);
+    gulp.watch('routes/*.js', notifyLiveReload);
     gulp.watch('server.js', notifyLiveReload);
 });
 
@@ -60,7 +62,7 @@ gulp.task('watch-debug', function () {
 gulp.task('compress', function () {
     return gulp.src([
         'scripts/vendor/*.js',
-        'scripts/tools/*.js',
+        'scripts/toolbox/*.js',
         'scripts/components/*.js',
         'scripts/model/*.js',
         'scripts/views/*.js',
@@ -74,10 +76,11 @@ gulp.task('compress', function () {
 gulp.task('concat', function () {
     return gulp.src([
         'scripts/vendor/*.js',
-        'scripts/tools/*.js',
+        'scripts/toolbox/*.js',
         'scripts/components/*.js',
         'scripts/model/*.js',
         'scripts/views/*.js',
+        'scripts/*.js',
         'scripts/*.js'
     ]) //select all javascript files under js/ and any subdirectory
         .pipe(concat('app.min.js')) //the name of the resulting file

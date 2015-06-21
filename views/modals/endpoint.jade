@@ -7,7 +7,7 @@
                     .input-field.col.s8
                         i.mdi-content-link.prefix
                         input#route.validate(type="text")
-                        label(for="app-name") Route
+                        label(for="route") Route
                     .input-field.col.s4
                         select#response-type.browser-default
                             option(value="json" selected) JSON
@@ -20,7 +20,7 @@
                     .card-panel.col.s12.blue.darken-2
                         h5.white-text Options
                 .row.response-type.json(style="display:none")
-                    .col.m6.s12
+                    .col.m8.s12
                         .row
                             .col.m6.s12
                                 h6 JSON Schema
@@ -29,10 +29,16 @@
                                 label(for="json-object") Object
                                 input#json-list(name="json-type" type="radio" value="list")
                                 label(for="json-list") List
-                        .row
-                            .col.m12
-                                textarea#json-schema.materialize-textarea
-                    .col.m6.s12
+                        .row.json-schema
+                            .col.m6.s12.input-field
+                                input.key.validate(type="text" )
+                                label Key
+                            .col.m5.s11.input-field
+                                input.value.validate(type="text" )
+                                label Value
+                            .col.m1.s1.input-field
+                                i.mdi-content-add
+                    .col.m4.s12
                         h6 JSON Preview
                         pre#json-preview.materialize-textarea
 

@@ -2,7 +2,7 @@
  * Created by thram on 16/06/15.
  */
 var Modal = (function () {
-    function _syntaxHighlight(json) {
+    function syntaxHighlight(json) {
         json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
             var cls = 'number';
@@ -25,7 +25,7 @@ var Modal = (function () {
         var target = $(el.attr('href'));
         var _elements = {
             route: target.find("#route"),
-            json_schema: target.find("#json-schema"),
+            json_schema: target.find(".json-schema"),
             json_preview: target.find("#json-preview"),
             json_type: target.find("input[name=json-type]"),
             response_type: target.find("#response-type"),
