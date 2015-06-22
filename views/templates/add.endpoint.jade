@@ -1,0 +1,61 @@
+form.col.s12
+    .section
+        .row.title.grey-text
+            .col.s12
+                h6.edit-title
+    .section
+        .row
+            .col.m6.s12
+                .row
+                    .input-field.col.s8
+                        i.mdi-content-link.prefix
+                        input#route.validate(type="text")
+                        label(for="route") Route
+                    .input-field.col.s4
+                        select.browser-default#response-type
+                            option(value="json" selected) JSON
+                            option(value="upload") Upload
+                            option(value="image_base64") Image Base 64
+                            option(value="audio") Audio
+                            option(value="video") Video
+            .col.m6.s12
+                a#add-endpoint.waves-effect.waves-light.btn.right
+                    | add
+    .section
+        .row
+            .col.s12
+                h5.grey-text Options
+        .row.response-type.json
+            .col.m6.s12
+                .row
+                    .col.m6.s12.green-text
+                        h6 JSON Schema
+                    .col.m6.s12
+                        input#json-object(name="json-type" type="radio" value="object" checked)
+                        label(for="json-object") Object
+                        input#json-list(name="json-type" type="radio" value="list")
+                        label(for="json-list") List
+                .row
+                    .col.s12
+                        .row.grey-text
+                            .col.s12
+                                h6.json-start {
+                        .row
+                            .col.s12.input-field.json-schema
+                        .row.grey-text
+                            .col.s12
+                                h6.json-end }
+
+            .col.m6.s12.green-text
+                h6 JSON Preview
+                pre#json-preview.materialize-textarea
+
+
+        .row.response-type.upload(style="display:none")
+            h5 Upload
+        .row.response-type.image_base64(style="display:none")
+            h5 Image Base 64
+        .row.response-type.audio(style="display:none")
+            h5 Audio
+        .row.response-type.video(style="display:none")
+            h5 Video

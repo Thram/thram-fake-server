@@ -22,7 +22,6 @@ $button-height: 36px !default;
 $button-font-size-shared: 1.3rem !default;
 $button-line-height: 36px !default;
 
-
 /*** Cards ***/
 $card-padding: 20px !default;
 $card-bg-color: #fff !default;
@@ -31,7 +30,6 @@ $card-bg-color: #fff !default;
 $collapsible-height: 3rem !default;
 $collapsible-header-color: #fff !default;
 $collapsible-border-color: #ddd !default;
-
 
 /*** Dropdown ***/
 $dropdown-color: $secondary-color !default;
@@ -47,9 +45,8 @@ $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
 $label-font-size: .8rem !default;
-$input-disabled-color: rgba(0,0,0, .26) !default;
+$input-disabled-color: rgba(0, 0, 0, .26) !default;
 $input-disabled-solid-color: #BDBDBD !default;
-
 
 // Radio Buttons
 $radio-fill-color: $secondary-color !default;
@@ -65,10 +62,9 @@ $switch-unchecked-lever-bg: #818181 !default;
 $datepicker-weekday-bg: darken($secondary_color, 7%) !default;
 $datepicker-date-bg: $secondary_color !default;
 $datepicker-year: rgba(255, 255, 255, .4) !default;
-$datepicker-focus: rgba(0,0,0, .05) !default;
+$datepicker-focus: rgba(0, 0, 0, .05) !default;
 $datepicker-selected: $secondary-color !default;
 $datepicker-selected-outfocus: desaturate(lighten($secondary-color, 35%), 15%) !default;
-
 
 /*** Global ***/
 // Media Query Ranges
@@ -95,10 +91,7 @@ $element-bottom-margin: ($gutter-width*2)/3 !default;
 $navbar-height: 64px !default;
 $navbar-height-mobile: 56px !default;
 
-
 /*** SideNav ***/
-
-
 
 /*** Tabs ***/
 $tabs-underline-color: $primary-color-light !default;
@@ -107,7 +100,7 @@ $tabs-bg-color: #fff !default;
 
 /*** Tables ***/
 $table-border-color: #d0d0d0 !default;
-$table-striped-color: #f2f2f2 !default;
+$table-striped-color: rgba(0, 0, 0, .3) !default;
 
 /*** Toasts ***/
 $toast-height: 48px !default;
@@ -128,7 +121,7 @@ $h6-fontsize: 1rem !default;
 $footer-bg-color: $primary-color !default;
 
 // Flowtext
-$range : $large-screen - $small-screen !default;
+$range: $large-screen - $small-screen !default;
 $intervals: 20 !default;
 $interval-size: $range / $intervals !default;
 

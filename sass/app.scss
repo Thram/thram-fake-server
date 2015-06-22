@@ -1,8 +1,10 @@
 @import "vendor/jquery.textcomplete";
 @import "vendor/materialize";
 
+$grid-border-color: #2e7d32;
+
 html {
-  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  font-family: "Courier New", Calibri, Trebuchet, sans-serif;
 }
 
 body, html {
@@ -29,29 +31,36 @@ h7 {
   margin: .5rem 0 .4rem;
 }
 
+.btn-small {
+  transform: scaleY(0.4) scaleX(0.4) translateY(40px);
+}
+
 pre {
   padding: 5px;
   margin: 5px;
+  .string {
+    color: #009688;
+  }
+
+  .number {
+    color: #ffc107;
+  }
+
+  .boolean {
+    color: #2196f3;
+  }
+
+  .null {
+    color: #e91e63;
+  }
+
+  .key {
+    color: #f44336;
+  }
 }
 
-.string {
-  color: green;
-}
-
-.number {
-  color: darkorange;
-}
-
-.boolean {
-  color: blue;
-}
-
-.null {
-  color: magenta;
-}
-
-.key {
-  color: red;
+div#container {
+  padding: 40px;
 }
 
 .dropdown-content {
@@ -59,6 +68,7 @@ pre {
 }
 
 .grid {
+  border: 1px dashed $grid-border-color;
   /* center */
   margin: 0 auto;
 }
@@ -84,11 +94,16 @@ pre {
   box-shadow: 2px 2px 15px -5px black;
   height: 200px;
   &:hover {
-    background-color: #90a4ae !important;
+    background-color: #424242 !important;
   }
   & > .row {
+    border: 1px solid $grid-border-color;
     height: 50%;
   }
+}
+
+.row {
+  margin: 0;
 }
 
 i.prefix {
@@ -111,6 +126,7 @@ i.prefix {
     padding-bottom: 1rem;
   }
 }
+
 .json-schema {
   .json-item {
     clear: both;
@@ -146,5 +162,24 @@ i.prefix {
       margin-left: 10px;
     }
 
+  }
+}
+
+.section {
+  border: 1px dashed $grid-border-color;
+}
+
+input {
+  color: white;
+}
+
+input.valid {
+  color: #66bb6a;
+}
+
+table {
+  td,th{
+    padding-left:20px;
+    padding-right:20px;
   }
 }

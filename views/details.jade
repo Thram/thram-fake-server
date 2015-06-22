@@ -1,121 +1,64 @@
 extends layout
 block content
+    .section
+        .row
+            .col.s12
 
-    #container
-        .section
-            .row
-                .col.s12
+                h4.grey-text
+                    i.mdi-action-dns.prefix
+                    span #{data.app_name}
+    .section
+        .row
+            .col.s12
+                h5.grey-text
+                    | Endpoints
+                    a#show-endpoint-form.btn-floating.waves-effect.waves-light.right
+                        i.mdi-content-add
 
-                    h3.white-text
-                        i.mdi-action-dns.prefix
-                        span #{data.app_name}
-        .divider
-        .section.blue.lighten-4
-            .row
-                .col.s12
-                    h5
-                        | Endpoints
-                        a#show-endpoint-form.btn-floating.waves-effect.waves-light.right
-                            i.mdi-content-add
-
-            .divider
-            .section.add-endpoint(style="display:none")
-                .row.title
-                    .col.s12
-                        h6 Add Endpoint
-                .row
-                    form.col.s12
-                        .row
-                            .col.m6.s12
-                                .row
-                                    .input-field.col.s8
-                                        i.mdi-content-link.prefix
-                                        input#route.validate(type="text")
-                                        label(for="route") Route
-                                    .input-field.col.s4
-                                        select.browser-default#response-type
-                                            option(value="json" selected) JSON
-                                            option(value="upload") Upload
-                                            option(value="image_base64") Image Base 64
-                                            option(value="audio") Audio
-                                            option(value="video") Video
-                            .col.m6.s12
-                                a#add-endpoint.waves-effect.waves-light.btn.right
-                                    |add
-                                    i.mdi-content-add.right
-                        .row
-                            .card-panel.col.s12.blue.darken-2
-                                h5.white-text Options
-                        .row.response-type.json
-                            .col.m6.s12
-                                .row
-                                    .col.m6.s12
-                                        h6 JSON Schema
-                                    .col.m6.s12
-                                        input#json-object(name="json-type" type="radio" value="object" checked)
-                                        label(for="json-object") Object
-                                        input#json-list(name="json-type" type="radio" value="list")
-                                        label(for="json-list") List
-                                .row
-                                    .col.s12
-                                        .row
-                                            .col.s12
-                                                h6 {
-                                        .row
-                                            .col.s12.input-field.json-schema
-                                        .row
-                                            .col.s12
-                                                h6 }
-
-                            .col.m6.s12
-                                h6 JSON Preview
-                                pre#json-preview.materialize-textarea
-
-
-                        .row.response-type.upload(style="display:none")
-                            h5 Upload
-                        .row.response-type.image_base64(style="display:none")
-                            h5 Image Base 64
-                        .row.response-type.audio(style="display:none")
-                            h5 Audio
-                        .row.response-type.video(style="display:none")
-                            h5 Video
-            .row
-                .col.s12
-                    table#endpoints-table.striped.hoverable.responsive-table
-                        thead.grey.lighten-5
+        .row.add-endpoint(style="display:none")
+            include templates/add.endpoint.jade
+        .row
+            .col.s12
+                table(cellspacing=200)#endpoints-table.hoverable.responsive-table
+                    thead.green-text.text-darken-2
+                        tr
+                            th(data-field="url") URL
+                            th(data-field="hits" style="width:1%;white-space:nowrap;") Hits
+                            th(data-field="response_type" style="width:1%;white-space:nowrap;") Response Type
+                            th(data-field="actions" style="width: 1px;") Actions
+                    tbody.green-text
+                        each endpoint, index in data.endpoints
                             tr
-                                th(data-field="url") URL
-                                th(data-field="hits") Hits
-                                th(data-field="response_type") Response Type
-                                th(data-field="actions") Actions
-                            tbody
-                                each endpoint, index in data.endpoints
-                                    tr
-                                        td #{endpoint.route}
-                                        td #{endpoint.hits}
-                                        td #{endpoint.response_type}
-                                        td
-        .divider
-        .section.indigo.lighten-4
-            .row
-                .col.s12
-                    h5
-                        | Services
-                        a#add-service.btn-floating.waves-effect.waves-light.right
-                            i.mdi-content-add
-            .section.add-service(style="display:none")
-                .row
-                    .col.s12
-                        h6 Add Service
-            .row
-                .col.s12
-                    table#services-table.striped.hoverable.responsive-table
-                        thead.grey.lighten-5
-                            tr
-                                th(data-field="url") URL
-                                th(data-field="hits") Hits
-                                th(data-field="response_type") Response Type
-                                th(data-field="actions") Actions
-                            tbody
+                                td #{endpoint.route}
+                                td(style="width:1%;white-space:nowrap;") #{endpoint.hits}
+                                td(style="width:1%;white-space:nowrap;") #{endpoint.response_type}
+                                td(style="width:1%;white-space:nowrap;")
+                                    button.btn-floating.blue.darken-2(style="margin-right: 20px")
+                                        i.mdi-editor-mode-edit
+                                    button.btn-floating.amber.darken-4(style="margin-right: 20px")
+                                        i.mdi-editor-insert-chart
+                                    button.btn-floating.red.darken-2
+                                        i.mdi-action-highlight-remove
+    .section
+        .row
+            .col.s12
+                h5.grey-text
+                    | Services
+                    a#add-service.btn-floating.waves-effect.waves-light.right
+                        i.mdi-content-add
+        .row.add-service(style="display:none")
+            include templates/add.service.jade
+        .row
+            .col.s12
+                table#services-table.hoverable.responsive-table
+                    thead.green-text.text-darken-2
+                        tr
+                            th(data-field="url") URL
+                            th(data-field="hits") Hits
+                            th(data-field="response_type") Response Type
+                            th(data-field="actions") Actions
+                    tbody.green-text
+    .fixed-action-btn(style="bottom: 45px; right: 24px;")
+        a#back-btn.btn-floating.btn-large.blue.darken-1.waves-effect.waves-red(href="/")
+            i.large.mdi-navigation-arrow-back
     include templates/json.item.jade

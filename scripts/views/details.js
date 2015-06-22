@@ -84,6 +84,7 @@ var Details = (function () {
 
     function _updateJsonPreview() {
         var json = _processJsonItems(_elements['json-schema']);
+        json = $('input[name=json-type]:checked').val() === 'list' ? [json] : json;
         $('#json-preview').html(thram.toolbox.get('syntax.highlight').json(JSON.stringify(json, null, 4)));
 
     }
@@ -122,17 +123,30 @@ var Details = (function () {
         _elements['add-service'] = $('#add-service');
         _elements['json-schema'] = $('.json-schema');
         _elements['show-endpoint-form'].on('click', function () {
+            $('.add-endpoint .edit-title').text('Add Endpoint');
             $('.add-endpoint').slideToggle();
         });
         _elements['add-service'].on('click', function () {
+            $('.add-service .edit-title').text('Add Service');
             $('.add-service').slideToggle();
         });
         _addFormRow(_elements['json-schema']);
         $('#add-item').on('click', function () {
             _addFormRow($('.json-schema'));
         });
+        $('input[name=json-type]').on('change', function () {
+            var start = '{';
+            var end = '}';
+            if ($('input[name=json-type]:checked').val() === 'list') {
+                start = '[{';
+                end = '}]';
+            }
+            $('h6.json-start').text(start);
+            $('h6.json-end').text(end);
+            _updateJsonPreview();
+        });
         $('#add-endpoint').on('click', function () {
-           console.log(_getJsonSchema(_elements['json-schema']));
+            console.log(_getJsonSchema(_elements['json-schema']));
         });
     }
 

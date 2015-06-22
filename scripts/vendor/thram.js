@@ -18,18 +18,18 @@ var thram = (function () {
             , doc = document
             , hack = doc.documentElement.doScroll
             , domContentLoaded = 'DOMContentLoaded'
-            , loaded = (hack ? /^loaded|^c/ : /^loaded|^i|^c/).test(doc.readyState)
+            , loaded = (hack ? /^loaded|^c/ : /^loaded|^i|^c/).test(doc.readyState);
 
 
         if (!loaded)
             doc.addEventListener(domContentLoaded, listener = function () {
-                doc.removeEventListener(domContentLoaded, listener)
+                doc.removeEventListener(domContentLoaded, listener);
                 loaded = 1;
-                while (listener = fns.shift()) listener()
+                while (listener = fns.shift()) listener();
             });
 
         return function (fn) {
-            loaded ? setTimeout(fn, 0) : fns.push(fn)
+            loaded ? setTimeout(fn, 0) : fns.push(fn);
         }
 
     }
@@ -48,6 +48,39 @@ var thram = (function () {
         return {
             get: get,
             add: add
+        }
+    })();
+
+    var templates = (function () {
+        function process(id, data) {
+            var html = document.querySelector('script#' + id + '[type=template]').innerHTML;
+            var re = /\{\{(.+?)}}/g,
+                reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
+                code = 'with(obj) { var r=[];\n',
+                cursor = 0,
+                result;
+            var add = function (line, js) {
+                js ? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
+                    (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
+                return add;
+            };
+            while (match = re.exec(html)) {
+                add(html.slice(cursor, match.index))(match[1], true);
+                cursor = match.index + match[0].length;
+            }
+            add(html.substr(cursor, html.length - cursor));
+            code = (code + 'return r.join(""); }').replace(/[\r\t\n]/g, '');
+            try {
+                result = new Function('obj', code).apply(data, [data]);
+            }
+            catch (err) {
+                console.error("'" + err.message + "'", " in \n\nCode:\n", code, "\n");
+            }
+            return result;
+        }
+
+        return {
+            process: process
         }
     })();
 
@@ -140,26 +173,41 @@ var thram = (function () {
         }
 
         function process() {
-            thram.routes.forEach(function (route) {
-                var routeMatcher = new RegExp(route.route.replace(/:[^\s/]+/g, '([\\w-]+)'));
-                var match = window.location.pathname.match(routeMatcher);
-                if (match) {
-                    var params = {};
-                    var url = match.shift();
-                    var keys = route.route.match(/:(.+?)(\/|\?|$)/g);
-                    if (keys) {
-                        keys = keys.join('&').replace(/:/g, '').replace(/\//g, '').split('&');
-                        var values = match;
-                        keys.forEach(function (key, i) {
-                            params[key] = values[i];
-                        });
-                    }
+            var BreakException = {};
+            try {
+                thram.routes.forEach(function (route) {
+                    var routeMatcher = new RegExp(route.route.replace(/:[^\s/]+/g, '([\\w-]+)'));
+                    var url = window.location.pathname;
+                    var match = url.match(routeMatcher);
+                    if (match && match.length > 0 && match[0] === url) {
+                        var params = {};
+                        if (route.route.indexOf(':') >= 0) {
+                            var keys = route.route.match(/:(.+?)(\/|\?|$)/g);
+                            if (keys) {
+                                keys = keys.join('&').replace(/:/g, '').replace(/\//g, '').split('&');
+                                var values = match;
+                                keys.forEach(function (key, i) {
+                                    params[key] = values[i];
+                                });
+                            }
+                        }
 
-                    var base = thram.views.get('base');
-                    base && base.init(url, params);
-                    thram.views.get(route.view).init(url, params);
-                }
-            });
+                        function initView() {
+                            var base = thram.views.get('base');
+                            base && base.init(url, params);
+                            thram.views.get(route.view).init(url, params);
+                        }
+
+                        route.validate ?
+                            (route.validate.validation() ? initView() : route.validate.onValidationFail())
+                            : initView();
+
+                        throw BreakException;
+                    }
+                });
+            } catch (e) {
+                if (e !== BreakException) throw e;
+            }
         }
 
         return {
@@ -219,6 +267,7 @@ var thram = (function () {
     return {
         routes: [],
         examples: {},
+        templates: templates,
         toolbox: toolbox,
         events: events,
         router: router,
