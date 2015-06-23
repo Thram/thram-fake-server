@@ -4,6 +4,7 @@
 var Endpoint = function (data) {
     var _endpoint = {
         route: data['route'],
+        method: data['method'],
         response_type: data['response_type']
     };
 

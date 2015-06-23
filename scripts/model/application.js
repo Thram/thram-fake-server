@@ -19,6 +19,10 @@ var Application = function (data) {
     };
 
 
+    function getId() {
+        return _id;
+    }
+
     function get() {
         return _app;
     }
@@ -42,10 +46,10 @@ var Application = function (data) {
     function add(type, value, success, error) {
         switch (type) {
             case 'endpoint':
-                _app.endpoints.push(new Endpoint(value));
+                _app.endpoints.push(value);
                 break;
             case 'service':
-                _app.services.push(new Service(value));
+                _app.services.push(value);
                 break;
         }
 
@@ -53,6 +57,7 @@ var Application = function (data) {
     }
 
     return {
+        getId: getId,
         get: get,
         set: set,
         save: save,
@@ -62,4 +67,8 @@ var Application = function (data) {
 
 Application.list = function (success, error) {
     $.getJSON('t/f/s/list_apps').success(success).error(error);
+};
+
+Application.get = function (id, success, error) {
+    $.getJSON('t/f/s/' + id).success(success).error(error);
 };

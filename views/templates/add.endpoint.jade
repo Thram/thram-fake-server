@@ -5,22 +5,31 @@ form.col.s12
                 h6.edit-title
     .section
         .row
-            .col.m6.s12
+            .col.m8.s12
                 .row
-                    .input-field.col.s8
+                    .input-field.col.m8.s12
                         i.mdi-content-link.prefix
                         input#route.validate(type="text")
                         label(for="route") Route
-                    .input-field.col.s4
+                    .input-field.col.m2.s12
                         select.browser-default#response-type
                             option(value="json" selected) JSON
                             option(value="upload") Upload
                             option(value="image_base64") Image Base 64
                             option(value="audio") Audio
                             option(value="video") Video
-            .col.m6.s12
+                    .input-field.col.m2.s12
+                        select.browser-default#method
+                            option(value="get" selected) GET
+                            option(value="post") POST
+                            option(value="put") PUT
+                            option(value="patch") PATCH
+                            option(value="delete") DELETE
+            .col.m4.s12
                 a#add-endpoint.waves-effect.waves-light.btn.right
                     | add
+                a#edit-endpoint.blue.waves-effect.waves-light.btn.right(style="display:none;")
+                    | edit
     .section
         .row
             .col.s12

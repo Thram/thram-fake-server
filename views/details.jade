@@ -19,7 +19,7 @@ block content
             include templates/add.endpoint.jade
         .row
             .col.s12
-                table(cellspacing=200)#endpoints-table.hoverable.responsive-table
+                table#endpoints-table.hoverable.responsive-table
                     thead.green-text.text-darken-2
                         tr
                             th(data-field="url") URL
@@ -27,18 +27,19 @@ block content
                             th(data-field="response_type" style="width:1%;white-space:nowrap;") Response Type
                             th(data-field="actions" style="width: 1px;") Actions
                     tbody.green-text
-                        each endpoint, index in data.endpoints
-                            tr
-                                td #{endpoint.route}
-                                td(style="width:1%;white-space:nowrap;") #{endpoint.hits}
-                                td(style="width:1%;white-space:nowrap;") #{endpoint.response_type}
-                                td(style="width:1%;white-space:nowrap;")
-                                    button.btn-floating.blue.darken-2(style="margin-right: 20px")
-                                        i.mdi-editor-mode-edit
-                                    button.btn-floating.amber.darken-4(style="margin-right: 20px")
-                                        i.mdi-editor-insert-chart
-                                    button.btn-floating.red.darken-2
-                                        i.mdi-action-highlight-remove
+                        if data.endpoints
+                            each endpoint, index in data.endpoints
+                                tr.endpoint(data-index="#{index}")
+                                    td #{endpoint.route}
+                                    td(style="width:1%;white-space:nowrap;") #{endpoint.hits || 0}
+                                    td(style="width:1%;white-space:nowrap;") #{endpoint.response_type}
+                                    td(style="width:1%;white-space:nowrap;")
+                                        button.edit.btn-floating.blue.darken-2(style="margin-right: 20px")
+                                            i.mdi-editor-mode-edit
+                                        button.analitycs.btn-floating.amber.darken-4(style="margin-right: 20px")
+                                            i.mdi-editor-insert-chart
+                                        button.remove.btn-floating.red.darken-2
+                                            i.mdi-action-highlight-remove
     .section
         .row
             .col.s12

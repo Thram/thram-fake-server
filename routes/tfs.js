@@ -19,4 +19,11 @@ router.get('/list_apps', function (req, res, next) {
     });
 });
 
+router.get('/:app_namespace', function (req, res, next) {
+    application.getByNamespace(req.params.app_namespace, function (data) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(data.result[0]));
+    });
+});
+
 module.exports = router;

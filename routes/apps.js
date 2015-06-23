@@ -12,9 +12,8 @@ router.get('/', function (req, res, next) {
 router.get('/:app_namespace', function (req, res, next) {
     application.getByNamespace(req.params.app_namespace, function (data) {
         console.log(data.result);
-        res.render('details', {title: 'Page of ' + req.params.app_namespace, data: data.result[0]});
+        res.render('details', {title: req.params.app_namespace, data: data.result[0]});
     });
-
 });
 
 router.post('/:app_namespace', function (req, res, next) {
@@ -61,7 +60,7 @@ router.put('/:app_namespace', function (req, res, next) {
 
 router.all('/:app_namespace/*', function (req, res, next) {
     //var data = req.params[0].split('/');
-    endpoint.process(req.params.app_name, req.params[0], req.method, function (result) {
+    endpoint.process(req.params.app_namespace, req.params[0], req.method, function (result) {
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(result));
     });

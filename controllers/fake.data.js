@@ -98,10 +98,25 @@ var fakeData = (function () {
         var data = {};
 
         _.forEach(obj, function (value, key) {
-            if (_.isObject(value)) {
-                _processObjectSchema(value);
-            } else {
-                data[key] = chance[value]();
+            if (key) {
+                switch (value.type) {
+                    case "array":
+                        for (var i = 0; i < value.size; i++) {
+                            _processObjectSchema(value.schema);
+                        }
+                        break;
+                    case "object":
+                        _processObjectSchema(value.schema);
+                        break;
+                    default:
+                        try {
+                            var chanceFnc = dataTypes[value.group][value.type].chance;
+                            data[key] = chance[chanceFnc]();
+                        } catch (e) {
+                            data[key] = "Generator not found";
+                        }
+
+                }
             }
         });
         return data;

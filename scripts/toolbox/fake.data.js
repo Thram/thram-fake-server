@@ -90,6 +90,44 @@ var FakeData = (function () {
 
     };
 
+    function _processObjectSchema(obj) {
+        var data = {};
+
+        _.forEach(obj, function (value, key) {
+            if (key) {
+                switch (value.type) {
+                    case "array":
+                        for (var i = 0; i < value.size; i++) {
+                            _processObjectSchema(value.schema);
+                        }
+                        break;
+                    case "object":
+                        _processObjectSchema(value.schema);
+                        break;
+                    default:
+                        try {
+                            var chanceFnc = dataTypes[value.group][value.type].chance;
+                            data[key] = chance[chanceFnc]();
+                        } catch (e) {
+                            data[key] = "Generator not found";
+                        }
+
+                }
+            }
+        });
+        return data;
+    }
+
+    function generate(schema, quantity) {
+        quantity = quantity || 1;
+        var data = [];
+        for (var i = 0; i < quantity; i++) {
+            var item = _processObjectSchema(schema);
+            data.push(item);
+        }
+        return data.length == 1 ? data[0] : data;
+    }
+
     function list() {
         return _dataTypes;
     }
@@ -99,6 +137,7 @@ var FakeData = (function () {
     }
 
     return {
+        generate: generate,
         get: get,
         list: list
     }
